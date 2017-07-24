@@ -1,2 +1,1 @@
-# freecodecamplearn
-## 学习记录
+## FreeCodeCamp前端学习记录
