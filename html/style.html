@@ -5,10 +5,12 @@
   <!--之前已经学习过HTML标签, 现在学习CSS(层叠样式表, Cascading Style Sheets), 简而言之, HTML标签用来定义文档的内容, 而CSS是用来定义文档的外观和布局, 为了让网页看起来更加的美观, CSS是一定要学习的-->
 
   <!--如何使用CSS样式:
-  1. 行内样式:通过style属性定义样式
+  1. 行内样式:通过style属性定义样式, 格式为style="属性1:value1;属性2;value2"
   2. 内部样式表:通过style标签在文档开头定义样式
   3. 外部样式表:通过link标签在文档开头引入外部样式
   注: 外部样式表的可重复利用性最强, 如果只为某个元素定义样式使用行内样式, 如果一个页面里有很多重复的样式, 使用内部样式, 如果有多个页面都有共同的样式, 务必使用外部样式
+
+  样式的优先级:就近原则, 谁离需要设置的元素近, 谁的样式就生效, 一般情况下内联样式 > 内部样式表 > 外部样式表
   -->
 
   <meta charset="UTF-8" />
@@ -25,24 +27,119 @@
    /*注释的内容*/
  -->
   <style type="text/css">
-
     /*设置段落的文本颜色*/
     /*id选择器, 以#开头+id属性的值(id属性的值不要以数字开头, 有些浏览器不兼容)*/
+
     #secondP {
-      color:cyan;
+      color: cyan;
     }
-   .classP {
-     color:blueviolet;
-   }
+
+    .classP {
+      color: blueviolet;
+    }
+    /*背景设置*/
+
+    body {
+      /*设置背景颜色*/
+      background-color: cadetblue;
+    }
+
+
+    div {
+      width: 100px;
+      height: 100px;
+    }
+    /*背景设置*/
+    .divBackColor {
+      /*设置背景颜色*/
+      background-color: #222;
+    }
+
+    .divBackImage {
+      /*设置背景图片*/
+      background-image: url("http://img.taopic.com/uploads/allimg/110123/292-11012313444683.jpg");
+      /*设置背景图片不铺满情况下的重复样式, no-repeatshi不重复*/
+      background-repeat: no-repeat;
+      /*设置背景图片的尺寸, 此处设置为封面, 意思是不管大小是否合适都让其缩放为整个元素的大小*/
+      background-size: cover;
+      /*背景图片是否固定或者滚动, fixed是固定, scroll是滚动*/
+      background-attachment: scroll;
+    }
+
+    /*文本属性设置*/
+    .textStyle {
+      background-color: white;
+      /*文本颜色*/
+      color: orchid;
+      /*文本对齐方式(left, right, center, justify四种方式)*/
+      text-align: left;
+      /*文本装饰:line-through, 删除线; underline, 下划线, 这两个比较常用*/
+      text-decoration: line-through;
+      text-indent: 20px;
+      /*设置行高*/
+      line-height: 44px;
+      /*设置字间距*/
+      letter-spacing: 5px; 
+      /*设置字体阴影, 值依次是x轴, y轴偏移, 阴影距离, 阴影颜色*/
+      text-shadow: 2px 2px 2px orange;
+    }
+
+    /*设置字体样式*/
+    .fontStyle{
+      /*设置字体, 应该同时多设置几个, 如果第一个不支持, 会以此使用后面的字体, 如果字体系列的名字超过一个, 需要用引号括起来, 多个字体之间用逗号隔开*/
+      font-family: 'Times New Roman', Times, serif;
+      color: greenyellow;
+      /*字体的样式, italic是斜体, normal是正常*/
+      font-style: italic;
+      /*字体大小:用px可以指定字体的固定大小, 用em可以指定相对的大小, 1em = 默认的字体大小(一般是16px) */
+      font-size: 20px;
+      /*指定字体的宽度*/
+      font-weight: bolder;
+    }
+
+
+    /*link样式:链接在不同的状态下可以设置不同的样式*/
+    /*正常情况下, 链接从未被访问过*/
+
+    .linkStyle {
+      text-decoration: none;
+    }
+    .linkStyle:link {
+      color: black;
+    }
+    /*已被访问过的链接*/
+    .linkStyle:visited {
+      color: peru;
+    }
+    /*鼠标悬停在链接上的样式*/
+    .linkStyle:hover {
+      color: greenyellow;
+      text-decoration: underline;
+    }
+    
+    /*链接点击时的样式*/
+    .linkStyle:active {
+      color: red;
+    }
+
+    /*注意: 链接不同状态的先后顺序很重要, 否侧有的不起效果, 一般按照link, visited, hover, active的顺序*/
+
   </style>
 </head>
 
 <body>
-  <p style="color:orange">这是一段添加过CSS样式(行内样式)的段落</p>
+
+  <p style="color:orange;background-color:red">这是一段添加过CSS样式(行内样式)的段落</p>
   <!--为标签添加id属性, 在一个HTML页面里, id的值不可以重复, 是唯一的-->
   <p id="secondP">这是另一段段落(通过id内部样式表设置)</p>
-  <!--同class值的属性可以多次出现-->
+  <!--同class值的属性可以多次出现, 因此可以快速的为一组拥有同样class值的元素设置样式-->
   <p class="classP">这是另一段段落(通过class内部样式表设置)</p>
+
+  <div class="divBackColor"></div>
+  <div class="divBackImage"></div>
+  <p class="textStyle">文本属性设置</p>
+  <p class="fontStyle">Font Style</p>
+  <a href="http://www.163.com" class="linkStyle">百度一下</a>
 </body>
 
 </html>
