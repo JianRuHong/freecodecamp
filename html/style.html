@@ -29,14 +29,70 @@
   <style type="text/css">
     /*设置段落的文本颜色*/
     /*id选择器, 以#开头+id属性的值(id属性的值不要以数字开头, 有些浏览器不兼容)*/
+    /*id选择器, 可以为指定的某个标签设置样式*/
 
     #secondP {
       color: cyan;
     }
+    /*类选择器*, 可以为一类拥有相同属性的标签设置样式*/
 
     .classP {
       color: blueviolet;
     }
+    /*分组选择器, 可以为指定的元素设置样式, 选择器之间用逗号隔开*/
+
+    h1,
+    h2,
+    p {
+      color: green;
+    }
+    /*派生选择器, 可以为指定元素下的某类元素设置样式(只要在指定元素下的元素就设置, 不管是否是其直系的子类元素)*/
+    /*为div下的p标签设置统一样式*/
+
+    div p {
+      color: blueviolet;
+    }
+    /*属性选择器: 属性选择器可以根据元素的属性及属性值来选择元素。*/
+    /*为拥有title属性, 不管值是什么的元素设置统一的样式*/
+
+    [title] {
+      color: red;
+    }
+    /*限制了元素的类型, 只要当元素为input且拥有title属性时才设置样式*/
+
+    input[title] {
+      color: white;
+    }
+    /*同时拥有以下属性才设置样式*/
+    [title][alt] {
+      color: black;
+    }
+    /*给某个属性有指定值的元素设置样式*/
+    [title="西游记"] {
+      color: purple;
+    }
+    /*如果一个属性包含了多个值, 可以通过下面的属性方式来筛选, ~=表示是否包含某个值, 包含的话就设置样式*/
+    [class~="classP"] {
+      color: cyan;
+    }
+    
+    /*子元素选择器:可以选取指定元素的直系子元素*/
+    /*给div的直系子p元素设置样式*/
+    div > p {
+      color: grey;
+    }
+
+    /*伪类选择器:就是一个选择器在某些状态下的样式, 语法:选择器:状态 {属性声明}*/
+    /*选取在div元素下的第一个子元素*/
+    div:first-child {
+      color: blanchedalmond;
+    }
+    /*选取在div元素下的最后一个子元素*/
+    div:last-child {
+      color: black;
+    }
+
+    /*伪元素选择器: 跟伪类的语法一样, 一般有以下几个常用的::first-line元素的第一行, first-letter元素的第一个字母, before元素之前添加内容, after元素之后*/
     /*背景设置*/
 
     body {
@@ -50,6 +106,7 @@
       height: 100px;
     }
     /*背景设置*/
+
     .divBackColor {
       /*设置背景颜色*/
       background-color: #222;
@@ -65,8 +122,8 @@
       /*背景图片是否固定或者滚动, fixed是固定, scroll是滚动*/
       background-attachment: scroll;
     }
-
     /*文本属性设置*/
+
     .textStyle {
       background-color: white;
       /*文本颜色*/
@@ -79,13 +136,13 @@
       /*设置行高*/
       line-height: 44px;
       /*设置字间距*/
-      letter-spacing: 5px; 
+      letter-spacing: 5px;
       /*设置字体阴影, 值依次是x轴, y轴偏移, 阴影距离, 阴影颜色*/
       text-shadow: 2px 2px 2px orange;
     }
-
     /*设置字体样式*/
-    .fontStyle{
+
+    .fontStyle {
       /*设置字体, 应该同时多设置几个, 如果第一个不支持, 会以此使用后面的字体, 如果字体系列的名字超过一个, 需要用引号括起来, 多个字体之间用逗号隔开*/
       font-family: 'Times New Roman', Times, serif;
       color: greenyellow;
@@ -96,34 +153,127 @@
       /*指定字体的宽度*/
       font-weight: bolder;
     }
-
-
     /*link样式:链接在不同的状态下可以设置不同的样式*/
     /*正常情况下, 链接从未被访问过*/
 
     .linkStyle {
       text-decoration: none;
     }
+
     .linkStyle:link {
       color: black;
     }
     /*已被访问过的链接*/
+
     .linkStyle:visited {
       color: peru;
     }
     /*鼠标悬停在链接上的样式*/
+
     .linkStyle:hover {
       color: greenyellow;
       text-decoration: underline;
     }
-    
     /*链接点击时的样式*/
+
     .linkStyle:active {
       color: red;
     }
-
     /*注意: 链接不同状态的先后顺序很重要, 否侧有的不起效果, 一般按照link, visited, hover, active的顺序*/
+    /*列表样式*/
 
+    .ulStyle {
+      /*设置无序列表的样式square, circle, none*/
+      list-style: square;
+      /*设置每一项前面的小图标*/
+      list-style-image: url();
+    }
+
+    .olStyle {
+      /*设置有序列表样式*/
+      list-style: upper-roman;
+    }
+    /*表格样式*/
+    /*指定表格, 表头, 单元格的边框, 默认是都带边框的, 可以使用border-collapse使其合并*/
+
+    table,
+    td,
+    th {
+      border: 1px solid red;
+      border-collapse: collapse;
+    }
+
+    td {
+      text-align: center;
+      background-color: blue;
+    }
+    /*盒子模型(box model):所有的HTML标签都可以看成一个装东西盒子, 盒子里面的东西是内容(content), 里面东西与盒子的间隔是填充(padding), 盒子的各个边的宽度是边框(border), 盒子与盒子之间的间隔是边距(margin), 盒子模型可以很好的诠释CSS布局*/
+    /*注:一个标签包含另一个标签, 既可以设置内填充, 也可以设置外边距, 因为两个元素之间可以看成两个不同的盒子, 但是因为该元素又在元素内部, 也可以视为内容*/
+    /*垂直的外边距会合并的,当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者*/
+
+    .divBox {
+      /*这里的width和heigh默认是内容的宽高*/
+      width: 200px;
+      height: 200px;
+      /*设置边框样式:该属性可以拆分为border-width, border-style, border-color, 每个边都可以单独设置边框样式, 如:border-top-color*/
+      border: 10px solid greenyellow;
+      /*设置内边距(填充), 可以设置某个方向的填充, 如:padding-left*/
+      padding: 10px;
+      /*设置外边距, 当然可以单独设置某个方向的外边距, 如:margin-top*/
+      margin: 10px;
+      background-color: purple;
+      /*轮廓是位于边框周围的一条线, 可以用来突出元素, 不过一般很少用*/
+      outline: 2px solid crimson;
+      /*元素的最大高度*/
+      max-height: 200px;
+      /*元素的最小高度*/
+      min-height: 200px;
+      /*设置行高,对文字有影响*/
+      line-height: 22px;
+    }
+
+    .divVisibility {
+      /*可以让一个标签隐藏, 但是隐藏之后, 还会占据其原来的位置, 还会对布局产生影响*/
+      visibility: hidden;
+    }
+
+    .divDisplay {
+      /*通过设置display属性值为none, 可以让元素隐藏, 切表现为该元素从布局中移出, 通过display可以把元素在块级元素和内联元素之间切换*/
+      display: inline;
+    }
+    /*设置了position属性值非static后, 元素均可以使用left, right, bottom, top这四个属性*/
+    /*相对定位:设置为相对定位的元素框会偏移某个距离。元素仍然保持其未定位前的形状，它原本所占的空间仍保留。*/
+
+    .divRelative {
+      background-color: maroon;
+      width: 250px;
+      height: 250px;
+      left: 20px;
+      top: 44px;
+      position: relative;
+    }
+    /*设置为绝对定位的元素框从文档流完全删除，并相对于其包含块定位，包含块可能是文档中的另一个元素或者是初始包含块。元素原先在正常文档流中所占的空间会关闭，就好像该元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。*/
+
+    .divAbsolute {
+      background-color: pink;
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      left: 100px;
+      top: 44px;
+    }
+    /*浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。
+由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。
+浮动框旁边的行框被缩短，从而给浮动框留出空间，行框围绕浮动框。*/
+    /*要想阻止行框围绕浮动框，需要对该框应用 clear 属性。clear 属性的值可以是 left、right、both 或 none，它表示框的哪些边不应该挨着浮动框。*/
+    /*浮动框会影响在其之前布局的元素, 之后的块级元素不受影响*/
+
+    .divFloat {
+      width: 500px;
+      height: 500px;
+      background-color: burlywood;
+      float: left;
+    }
   </style>
 </head>
 
@@ -140,6 +290,76 @@
   <p class="textStyle">文本属性设置</p>
   <p class="fontStyle">Font Style</p>
   <a href="http://www.163.com" class="linkStyle">百度一下</a>
+  <ul class="ulStyle">
+    <li>第一</li>
+    <li>第二</li>
+    <li>第三</li>
+  </ul>
+  <ol class="olStyle">
+    <li>第一</li>
+    <li>第二</li>
+    <li>第三</li>
+  </ol>
+
+  <table>
+    <thead>
+
+      <tr>
+        <th>标题1</th>
+        <th>标题2</th>
+        <th>标题3</th>
+        <th>标题4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+      </tr>
+      <tr>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+      </tr>
+      <tr>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+        <td>内容</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>结束</td>
+        <td>结束</td>
+        <td>结束</td>
+        <td>结束</td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="divBox divVisibility">
+
+  </div>
+
+  <div class="divBox divDisplay">
+
+  </div>
+  <div class="divBox">
+
+  </div>
+
+  <div class="divRelative">
+    相对定位的元素
+  </div>
+  <div class="divAbsolute">
+    绝对定位的元素
+  </div>
+  <div class="divFloat">
+    浮动的元素
+  </div>
 </body>
 
 </html>
