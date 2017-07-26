@@ -1,12 +1,176 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8"/>
-    <title>bootstrap学习和记录</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
-    
-  </head>
-  <body>
-    <button type="button" class="btn btn-success">成功</button>
-  </body>
+<!--语言是中文简体zh-CN-->
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--让其适应移动设备, 网页的宽度等于设备宽度, 初始缩放比例是1.0, 最大缩放比例是1.0,不允许用户进行缩放-->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <title>bootstrap学习和记录</title>
+  <!--Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局(在不同设备都适配)、移动设备优先的 WEB 项目。-->
+  <!--注: 响应式布局是Ethan Marcotte在2010年5月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。-->
+  <!--bootstrap是移动设备优先的-->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+
+  <style type="text/css">
+
+  </style>
+</head>
+
+<body>
+
+  <!--bootstrap的布局必须放在container或者container-fluid的容器元素里面(因为bootstrap是用栅格系统布局的, 把布局分为行和列(row, column), 两个容器类提供了和行相匹配的内填充, 因为容器类的左右内填充是15px, 所以给row类的元素设置了-15px的外边距, 这样就相互抵消了, 所以row类元素都要位于容器内)-->
+
+  <!--之所以bootstrap是移动设备优先的, 是因为其布局样式col-xs-*没有位于媒体查询里面, 但是其他尺寸都是在媒体查询里面定义的, 只有显示区域达到某个点, 才会启用其他的布局方案, 比如:给一个div设置了col-xs-4,col-sm-3的类, 如果屏幕宽度没有达到768px, 则还是使用的col-xs-4的布局方案, 如果达到了, 则使用col-sm-3的布局. -->
+  <!--栅格布局每行最多12列, 如果在一个.row 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。-->
+  <!--列偏移使用col-xs-offset-*这样的类, 实质是改变改变其外边距-->
+
+  <!--以上就是bootstrap的栅格系统, 其本质就是把布局划分成了多行, 每行又划分为最多12列, 内容就放在列中-->
+
+  <div class="container">
+
+    <!--标题没有设置什么额外样式, 添加了.h1这种的类, 方便定义为标题的样式, 而且可以在标题内使用small标签来定义副标题-->
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>bootstrap中h1的标题<small> 副标题</small></h1>
+      </div>
+      <div class="col-xs-12">
+        <h2>bootstrap中h2的标题<small> 副标题</small></h2>
+      </div>
+      <div class="col-xs-12">
+        <h3>bootstrap中h3的标题<small> 副标题</small></h3>
+      </div>
+      <div class="col-xs-12">
+        <h4>bootstrap中h4的标题<small> 副标题</small></h4>
+      </div>
+      <div class="col-xs-12">
+        <h5>bootstrap中h5的标题<small> 副标题</small></h5>
+      </div>
+      <div class="col-xs-12">
+        <h6>bootstrap中h6的标题<small> 副标题</small></h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!--bootstrap给body元素设置了字体为14px的大小,行距是1.428, 由于css的样式继承, 所有段落元素也继承了这些属性-->
+        <!--.lead可以让字体变大, 字体变粗, 更改行间距, 调整底部外边距, 可以让内容更突出, 而且会根据屏幕尺寸调整字体大小, 实际就是在媒体查询中修改了字体大小-->
+        <p class="lead">曾经有一份真诚的爱情摆在我的面前，但是我没有珍惜，等到了失去的时候才后悔莫及，尘世间最痛苦的事莫过于此。如果上天可以给我一个机会再来一次的话，我会跟那个女孩子说：我爱她。如果非要把这份爱加上一个期限，我希望是……一万年！</p>
+
+        <!--mark, del, s也不常用, 一笔带过, 看样式-->
+        <p class="lead">
+          <mark>埋骨</mark>何须桑梓地, 人生无处不青山!(大气磅礴
+          <del>!!!!</del>)</p>
+        <!--通过bootstrap提供的类, 可以快速设置文本对齐样式, 文本大小写-->
+        <p class="text-center lead">埋骨</mark>何须桑梓地, 人生无处不青山!(大气磅礴
+          <del>!!!!</del>)</p>
+        <p class="text-capitalize lead">welcome to china!</p>
+        <!--引用标签也被bootstrap设置了样式, 任何内容放在里面都是被引用的样式, 通过添加footer标签设置引用的来源-->
+        <blockquote class="blockquote-reverse">
+          <p>就只有男朋友跟游戏认识的一个跟男朋友共同的朋友喝喝咖啡</p>
+          <footer>
+            托尔斯泰
+          </footer>
+        </blockquote>
+
+        <!--bootstrap设置的表格样式, 我还是很喜欢的-->
+
+
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!--bootstrap把表格设置的已经非常漂亮了, 平时使用基本已经够用了(默认的表格样式丑到爆)-->
+        <!--条纹表格 table-striped, 依靠了CSS3的一个属性nth-child, 可以指定某个或某些类型的子元素-->
+        <!--边框表格 table-bordered-->
+        <!--鼠标悬停  table-hover-->
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>年龄</th>
+              <th>身高</th>
+              <th>体重</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>吴彦祖</td>
+              <td>38</td>
+              <td>180CM</td>
+              <td>80公斤</td>
+            </tr>
+            <tr>
+              <td>刘德华</td>
+              <td>44</td>
+              <td>175CM</td>
+              <td>70公斤</td>
+            </tr>
+            <tr>
+              <td>朱元璋</td>
+              <td>1000</td>
+              <td>180CM</td>
+              <td>81公斤</td>
+            </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+
+        <form>
+          <!--通过给表单元素设置form-control就可以设置一些样式, 且把lable和input标签放在form-group里, 会有更好的显示效果-->
+          <div class="form-group">
+            <label for="soushu">搜索</label>
+            <input type="search" name="soushu" value="" class="form-control" id="soushu">
+          </div>
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!--为 <a>、<button> 或 <input> 元素添加按钮类（button class）即可使用 Bootstrap 提供的样式。-->
+        <!--注: 如果是按钮的话尽量还是使用button标签, 跳转或者链接的话使用a标签-->
+        <div class="well">
+          <button type="button" class="btn btn-default">默认样式的按钮</button>
+          <button class="btn btn-success" type="button">成功样式的按钮</button>
+          <button type="button" class="btn btn-info">信息样式的按钮</button>
+          <button type="button" class="btn btn-primary">首选样式的按钮</button>
+          <button type="button" class="btn btn-danger">危险样式的那妞</button>
+          <button type="button" class="btn btn-warning">警告样式的按钮</button>
+        </div>
+
+        <!--可以通过btn-block把按钮设置为块级元素, 其宽度是父元素的100%-->
+        <div class="well">
+          <button type="button" class="btn btn-primary btn-block">块级元素的按钮</button>
+          <button type="button" class="btn btn-success btn-block">块级元素的按钮</button>
+          <!--通过active类可以让按钮表现出已被点击的状态-->
+          <button type="button" class="btn btn-success btn-block active">已经选中的按钮</button>
+          <!--使用disabled让按钮禁用, 且有禁用的状态-->
+          <button type="button" class="btn btn-success btn-block" disabled="disabled">已经禁用的按钮</button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+        <!--让图片响应式布局可以使用类img-responsive, 其实质是设置了最大宽度为100%, 高度自动-->
+        <img src="http://img05.tooopen.com/images/20150621/tooopen_sy_131418789139.jpg" alt="图片未加载" class="img-responsive img-thumbnail">
+        <img src="http://img05.tooopen.com/images/20150621/tooopen_sy_131418789139.jpg" alt="图片未加载" class="img-responsive img-rounded">
+      </div>
+    </div>
+
+  </div>
+</body>
+
 </html>
