@@ -246,7 +246,7 @@ console.log(string2int('135688'));
  */
 
  function normalName(arr){
-   
+
   return arr.map(function(value){
     return value;
   });
@@ -254,3 +254,4 @@ console.log(string2int('135688'));
 
  console.log(normalName(['adam', 'LISA', 'barT']));
 
+//测试github
