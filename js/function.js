@@ -254,5 +254,3 @@ console.log(string2int('135688'));
 
  console.log(normalName(['adam', 'LISA', 'barT']));
 
-//测试github
-//测试
