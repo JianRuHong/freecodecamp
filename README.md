@@ -11,5 +11,8 @@
 ### 以下记录在学习中查看到且有价值的资料:
 1. [廖雪峰博客](https://www.liaoxuefeng.com/), 包含了git, js教程, js教程写的较深入, 很值的学习!
 2. [Bootstrap中文网](http://v3.bootcss.com/), 可以查看其使用方法, 毕竟英文对我来说还是有点难度的!
+3. [JS闭包讲解](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html), 这是我参考众多资料之后, 发现的最浅显易懂, 且功能明确的文章了, 该作者的其他文章也很好, 可以收藏!
+4. [阮一峰个人博客](http://www.ruanyifeng.com/blog/archives.html), 不解释, 赶紧上车!
+5. [JS中的正则表达式使用](http://javascript.ruanyifeng.com/stdlib/regexp.html#toc0), 足够应付日常开发, 正则指望总结, 那太多了, 忘记了就来看看这个教程
 
 

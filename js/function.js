@@ -245,12 +245,87 @@ console.log(string2int('135688'));
  * 请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
  */
 
- function normalName(arr){
+function normalName(arr) {
 
-  return arr.map(function(value){
-    return value;
+  return arr.map(function (value) {
+    return (value.substring(0, 1)).toUpperCase() + (value.substring(1, value.length)).toLowerCase();
   });
- }
+}
 
- console.log(normalName(['adam', 'LISA', 'barT']));
+console.log(normalName(['adam', 'LISA', 'barT']));
 
+
+/**
+ * 下面这个列子
+ */
+var arr = ['10', '2', '3'];
+var r;
+//r = arr.map(parseInt);错误 map传的回调函数, 是有三个参数的, parseInt方法需要两个参数, 第一个是需要转化的数, 第二个是进制, 会把回调函数的第二个参数给parseInt, 但是第二个参数是索引值, 所以出现了这种错误
+
+//第一种解决办法
+//r = arr.map(value => parseInt(value));箭头函数, 后面才学习到
+//第二种
+//把内置的parseint方法重新指向一个函数
+parseInt = function (x) {
+  return x - 0;
+}
+
+r = arr.map(parseInt);
+console.log(r);
+
+/**
+ * filter
+ * 在任何编程中都少不了过滤的方法, 或者叫做筛选, 不过大多数都是一个思想, 根据计算返回的结果来确定是否保留
+ * 
+ */
+
+
+//js中的过滤函数通过返回true或者false来确定是否移除元素, 并且返回一个新的数组
+var filterArray = [1, 2, 5, 7, 3, 6, 9];
+var newArr = filterArray.filter(function (value, index, arr) {
+  return value % 2 === 0;
+});
+
+console.log(newArr);
+
+/**
+ * 请尝试用filter()筛选出素数
+ */
+
+function getPrimeNumber(arr) {
+  return arr.filter(function (value, index) {
+    if (value === 1) {
+      return false;
+    } else {
+      for (let i = 2; i <= value; i++) {
+
+        if (value % i === 0 && value != i) {
+
+          return false;
+        }
+      }
+      return true;
+    }
+  });
+}
+console.log(getPrimeNumber([1, 2, 4, 6, 8, 9, 7]));
+
+/**
+ * 排序, 使用场合也比较多, 在js中使用sort, 排序的核心就是比较两个元素的大小
+ */
+
+ //一般情况下不要直接使用默认的sort方法进行排序, 其会把数组的所有元素转成字符串再进行排序, 然后按照asciima表来排序, sort是高阶函数, 所以可以接收自定义的排序方法, 且不用具体知道比较的大小, 只需要返回-1, 0, 1来确定比较的结果就好, 内部会进行排序
+
+ var sortArray = ["Apple", "amrect", "zzlet", "tttd", "Kiss"];
+ //按照小写排序(都转成小写后直接进行比较会转成asciima表的值来比较)
+ sortArray.sort(function(value1, value2){
+   value1 = value1.toLowerCase();
+   value2 = value2.toLowerCase();
+   if(value1 < value2){
+      return -1;
+   }else if(value1 == value2){
+     return 0;
+   }
+    return 1;
+ });
+ console.log(sortArray);//可见sort是直接修改了原数组的排序
