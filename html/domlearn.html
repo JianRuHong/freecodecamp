@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title>dom学习</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <style>
+  #myMouseDiv {
+    background-color: blueviolet;
+    width: 200px;
+    height: 200px;
+  }
+  </style>
+  <script type="text/javascript">
+    function finished() {
+      // document.write("<h2>日了狗了</h2>")
+    }
+  </script>
+
+</head>
+
+<body onload="finished()">
+
+  <button type="button" class="btn btn-block btn-danger" id="myButton" onclick="changeColor()">危险</button>
+
+  <!-- HTML结构 -->
+  <div id="test-div">
+    <p id="test-js">javascript</p>
+    <p>Java</p>
+  </div>
+
+  <div>
+    <input type="text" name="" value="" class="form-control" id="nameInput">
+  </div>
+
+  <div id="myMouseDiv"></div>
+</body>
+
+</html>
+
+<script type="text/javascript" src="../js/dom.js"></script>

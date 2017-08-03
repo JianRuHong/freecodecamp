@@ -14,5 +14,6 @@
 3. [JS闭包讲解](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html), 这是我参考众多资料之后, 发现的最浅显易懂, 且功能明确的文章了, 该作者的其他文章也很好, 可以收藏!
 4. [阮一峰个人博客](http://www.ruanyifeng.com/blog/archives.html), 不解释, 赶紧上车!
 5. [JS中的正则表达式使用](http://javascript.ruanyifeng.com/stdlib/regexp.html#toc0), 足够应付日常开发, 正则指望总结, 那太多了, 忘记了就来看看这个教程
+6. [DOM教程](http://www.runoob.com/htmldom/htmldom-intro.html), DOM是独立于语言和平台的,它允许程序和脚本动态地访问和更新文档的内容、结构和样式。这个上面讲解的还是很简洁明了!
 
 
