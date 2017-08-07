@@ -1,0 +1,168 @@
+/*
+学习前端开发的时候就知道CSS以及HTML标签不是编程语言, 因为其连最基本的变量都没有,也咩有常见的判断语句, HTML就是标记语言, 可以让浏览器知道序言怎样解析标签的内容(结构), 而CSS是一系列的样式描述(声明), 让浏览器知道怎样更好的去展现标签(样式).
+
+有一些大神就不愿意写这种毫无技术性的CSS样式, 在广大程序员的眼里, 不敲代码还算的上编程吗, 在前端开发中, 大量时间都用在了CSS样式的设计上, 但是该项工作充其量就是体力活, 而且耗时. 为了找到更简洁, 更高效, 且更符合编程思想的方式, 因此CSS预处理器就诞生了!
+
+CSS预处理器的核心就是, 通过编程语言的形式, 进行样式的设计(CSS仅仅是样式属性的声明, 毫无编程理念), 最终编译生成可以使用的CSS文件.其中最受欢迎的, 就有SASS.
+
+SASS的核心就是:使CSS的设计更加的简洁, 简单.
+
+注:SASS是一个编译器, 可以编译程序员写的以.scss为扩展名的文件(文件里的是纯文本文件, 语法需要符合.sass的规范, 里面可以包含css的样式)
+
+
+一. 安装SASS
+
+SASS和Cocoapods(mac OS, iOS的版本管理工具), 都是使用Ruby语言开发的(虽然使用Ruby开发的, 但是使用者根本不需要懂, 就像VSCode使用C, C++编写的一样, 用户一样不需要懂其怎样开发的, 会使用是最主要的), 因此电脑上应该先安装Ruby.
+
+1. 查看是否安装了Ruby(unix已经linux系统下)
+终端运行命令 ruby-v, 如果显示版本号, 则已经安装成功
+未安装, 前往ruby官网下载安装: https://rubyinstaller.org/downloads/
+2. 安装SASS
+Ruby自带一个叫做RubyGems的系统，用来安装基于Ruby的软件。
+安装: gem install sass
+注: 我在Mac上安装时碰到无权限访问(You don't have write permissions), 把命令改成sudo gem install sass后(sudo指令就是可以获取更高的root权限), 依然有错误发生(Operation not permitted), 然后依据网上的教程改成:
+sudo gem install -n /usr/local/bin sass, 才安装成功
+
+3. 查看SASS是否安装成功
+在终端使用指令 sass -v, 显示版本号, 则安装成功
+参考链接:   
+https://www.sass.hk/install/
+http://blog.csdn.net/Zsk_Zane/article/details/50659827
+
+
+二. SASS使用
+
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+
+在终端使用指令 sass 文件名.scss, 可以让其在终端显示出编译后的css样式, 但是并没有文件保存
+
+如果需要把结果保存, 只需要如下操作:
+sass 文件名.scss 文件名.css, 则会在当前路径下生成对应的样式文件
+
+当然在编写CSS时, 每个开发者都有不同的代码风格, 比如选择器和属性声明之间加空格, 亦或者换行等, SASS提供了四种编译成CSS文件的代码风格:
+nested：嵌套缩进的css代码，它是默认值。
+expanded：没有缩进的、扩展的css代码。
+compact：简洁格式的css代码。
+compressed：压缩后的css代码。
+开发中, 常使用compressed, 会节省css文件的大小
+使用代码风格的方式如下:
+sass --style compressed 文件名.scss 文件名.css
+
+假如当我们已经生成目标css文件了, 但是之后又需要修改.scss文件了, 修改完之后如果再重新生成新的css文件, 是非常繁琐的, 不过好在SASS提供了一个监听的方法, 可以把.scss文件里修改过的内容编译映射到指定的css文件里面,意思就是在.scss文件里修改的样式, 会动态的编译到目标css文件里面, 非常的高效, 指令如下:
+监听单个scss文件:
+sass --watch 正在修改的文件.scss:指定的映射文件.css
+但是如果有多个scss文件都有可能修改的话, 你可以监听整个文件夹
+sass --watch 正在修改的sass文件夹:目标css文件夹
+
+*/
+
+
+/*
+三. 基本语法格式
+*/
+
+// 1. 变量
+// 在CSS中是无法使用变量的, 但是SASS中可以使用变量, 变量名使用$开头(为什么用$开头, 漂亮, 辨识度高, 且没有和css样式中任何属性冲突)
+$blue: blue;
+div {
+  color: $blue;
+}
+
+//和js中的模板字符串一样, 如果变量用在字符串中, 也是同样的处理, 不过其是使用#{变量名}, 而不是&{变量名}, 但是用法是一致的
+$myleft:left;
+div {
+  border-#{$myleft}-color: $blue;
+}
+
+//2. 运算符
+//sass可以使用算数运算符(加减乘除取余等)
+p {
+  margin: 10px;
+  top: 30px + 10px;
+  right: 10px;
+}
+
+//3. SASS还允许选择器的嵌套
+//在CSS中表示div下的p标签, 需要使用派生选择器, 如下
+div p {
+  background-color: orange;
+}
+
+//但是在sass中, 可以使用如下嵌套达到上面的效果, 这样结构更加的清晰
+div {
+  p {
+    background-color: orange;
+  }
+}
+
+//4. 单行注释和多行著述
+//在CSS中只允许/**/的形式来注释
+//sass允许多行注释和单行注释
+//5. 选择器继承
+//在CSS中, 如果一个标签拥有两种类选择器的样式, 需要同时引入这两个类选择器, 在SASS中, 可以通过@extend关键字来轻松的继承另一个选择器的样式
+.class1 {
+  border: 1px solid #ddd;
+}
+
+.class2 {
+  @extend .class1;
+  font-size: 120%;
+}
+
+//6. 重用代码块
+//在OC中可以使用define来指定一个宏定义, 这样用到的时候只需要引入别名即可, 在sass中也有类似的功能, 就是关键字@mixin来定义一个通用的功能块, 然后在属性声明里面使用关键字@include引入需要使用到的代码块
+@mixin myleft {
+  float: left;
+  margin-left: 44px;
+}
+
+@mixin myColor {
+  background-color: green;
+  color: white;
+}
+
+//@mixin还有个强大的功能, 可以指定参数还有参数的默认值, 一共属性声明使用
+@mixin myTop($value: 10px) {
+  margin-top: $value;
+}
+
+.mydiv {
+  @include myleft;
+  @include myColor;
+  @include myTop(44px);
+}
+
+//6. 条件语句
+//关键字@if和@else和js中的判断是等价的
+p {
+  @if (1 + 1==2) {
+    border: 1px solid orange;
+  }
+  @else {
+    border: 2px solid purple;
+  }
+}
+
+//7. 循环语句
+//for循环
+@for $i from 1 to 10 {
+  .border-#{$i} {
+    border: #{$i}px solid blue;
+  }
+}
+
+//8. 自定义函数
+//关键字@function
+@function myDouble($n) {
+  @return $n * 2;
+}
+
+.myGG {
+  height: myDouble(20px);
+}
+
+
+/*! 
+注意点: 第一, 变量必须使用$来声明, 赋值时, 使用的是:, 而不是=;
+第二, 所有的关键字也都需要@来声明;
+*/

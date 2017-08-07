@@ -63,7 +63,7 @@ console.log($("div, body"));
 console.log($("body, div").find("#myDiv"));
 
 //过滤(不常用), 和js的数组过滤方法一致
-$("body, div").find("#myDiv").filter(function(){
+$("body, div").find("#myDiv").filter(function () {
   return true;
 })
 
@@ -72,47 +72,47 @@ $("body, div").find("#myDiv").filter(function(){
  * 操作DOM
  */
 
- //修改HTML和Text
- var mydiv7 = $("#myDiv");
- //修改文本, 有参数
- mydiv7.text("哈哈");
- //获取文本, 无参数
- console.log($("#myDiv").text());
- //修改标签
- mydiv7.html("<p>去求吧</p>");
- //获取标签
- console.log(mydiv7.html());
- //修改css(此处的属性名, 可以使用驼峰法, 或者-链接)
- mydiv7.css("background-color", "orange").css("color", "white");
- /**
-  * jQuery对象的所有方法都返回一个jQuery对象（可能是新的也可能是自身），这样我们可以进行链式调用，非常方便。
-  */
+//修改HTML和Text
+var mydiv7 = $("#myDiv");
+//修改文本, 有参数
+mydiv7.text("哈哈");
+//获取文本, 无参数
+console.log($("#myDiv").text());
+//修改标签
+mydiv7.html("<p>去求吧</p>");
+//获取标签
+console.log(mydiv7.html());
+//修改css(此处的属性名, 可以使用驼峰法, 或者-链接)
+mydiv7.css("background-color", "orange").css("color", "white");
+/**
+ * jQuery对象的所有方法都返回一个jQuery对象（可能是新的也可能是自身），这样我们可以进行链式调用，非常方便。
+ */
 
-  //给对象添加一个类
-  $("#myDiv").addClass("welcome");
-  //元素是否有某一个类
-  console.log($("#myDiv").hasClass("welcome"));
- //元素显示
- //$("#myDiv").show();
- //元素隐藏
- //$("#myDiv").hide();
- //获取元素尺寸
- console.log($("#myDiv").width());
- //设置元素尺寸
- $("#myDiv").width("400px");
- //获取属性和设置属性
- //$("#myDiv").attr("", value);
- //获取表单的值
- //$("input").val();
+//给对象添加一个类
+$("#myDiv").addClass("welcome");
+//元素是否有某一个类
+console.log($("#myDiv").hasClass("welcome"));
+//元素显示
+//$("#myDiv").show();
+//元素隐藏
+//$("#myDiv").hide();
+//获取元素尺寸
+console.log($("#myDiv").width());
+//设置元素尺寸
+$("#myDiv").width("400px");
+//获取属性和设置属性
+//$("#myDiv").attr("", value);
+//获取表单的值
+//$("input").val();
 
- /**
-  * 修改DOM结构
-  */
+/**
+ * 修改DOM结构
+ */
 
-  //通过原生API来修改DOM结构, 代码量大, 而且兼容性差, 使用jquery可以方便的解决这些痛苦
+//通过原生API来修改DOM结构, 代码量大, 而且兼容性差, 使用jquery可以方便的解决这些痛苦
 
 
-  //添加DOM
+//添加DOM
 //在被选元素结尾插入内容(成为子元素)
 $("#myDiv").append('<p>谁怕谁</p>');
 //在被选元素之后插入内容(成为同级元素)
@@ -132,27 +132,25 @@ $("#myDiv").on("mousemove", function (e) {
  * jq处理Ajax
  */
 
- $.get("http://weixin.jirengu.com/weather", null,
-   function (data, textStatus, jqXHR) {
-     //data是js对象
-     console.log(JSON.stringify(data));
-   }
- );
+$.get("http://weixin.jirengu.com/weather", null,
+  function (data, textStatus, jqXHR) {
+    //data是js对象
+    console.log(JSON.stringify(data));
+  }
+);
 
- $.getJSON("http://weixin.jirengu.com/weather", null,
-   function (data, textStatus, jqXHR) {
-     console.log(data);//js对象
-   }
- );
+//使用jsonp时, 使用getjson更加简单, 直接调用即可
+$.getJSON("http://weixin.jirengu.com/weather", null,
+  function (data, textStatus, jqXHR) {
+    console.log(data); //js对象
+  }
+);
 
- $.ajax("http://weixin.jirengu.com/weather",
- {
-   type: "get",
-   data: "data",
-   dataType: "dataType",
-   success: function (response) {
-     console.log(response);
-   }
- });
-
-  
+$.ajax("http://weixin.jirengu.com/weather", {
+  type: "get",
+  data: "data",
+  dataType: "dataType",
+  success: function (response) {
+    console.log(response); //JSON字符串
+  }
+});

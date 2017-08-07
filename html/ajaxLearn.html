@@ -4,12 +4,29 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="../js/ajax.js">
+    <script src="../js/jquery-3.2.1.min.js">
       
-    </script>
+</script>
+<script>
+  $(document).ready(function () {
+    $.get("http://localhost:9999/", null,
+      function (data, textStatus, jqXHR) {
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
+            var element = data[key];
+            console.log(element);
+            
+          }
+        }
+       
+        $("#myContent").text("天下第一");
+      }
+    );
+  });
+</script>
   </head>
   <body>
-    <p id="myContent">
-    </p>
+    <h1 id="myContent">
+    </h1>
   </body>
 </html>
