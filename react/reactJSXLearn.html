@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+
+  <body>
+    <div id="myHeader">
+    </div>
+    <div id="myBody"></div>
+    <script type="text/babel">
+      //通常情况下使用如下的语句来创建一个DOM节点
+      //var ele = "<h1>Welcome to China !</h1>";
+      //var ele = document.createElement("h1");
+      //下面这句话和我们常见的标签和JS语法都不一样, 他就是JSX语言
+      //JSX 用来声明 React 当中的元素(注意, 声明的并不是一个DOM节点)
+      const element = <h1> Welcome to China! </h1>;
+      
+      //下面一个例子来表明, JSX的语法核心
+      //JS语法声明的对象
+      var user = {name:"Pitter", age: 18};
+      //JSX声明的一个元素(不是DOM节点)
+      const userElement = (
+        <h2>Hello, {user.name}</h2>
+      );
+      //把指定的元素渲染成DOM节点之后, 插入到指定的DOM里面
+      ReactDOM.render(userElement, document.getElementById("myHeader"));
+      
+      /*
+      1. 可以看出JSX的核心语法就是, 如果是<开头的就按照HTML的语法格式来处理, 如果是{开头的就按照JS语法来处理, 是很聪明的一个处理, 可以很好的区分出来HTML语法和JS语法;
+      2. 一般写代码都会加一些换行啊等, 为了代码的美观, 所以一般如果写的JSX代码是多行的情况, 建议使用小括号括起来, 避免不必要的bug
+      */
+
+      //JSX的真正原理
+
+      //之前提到过Babel会把JSX转成JS代码, 具体过程把声明的React元素转成React.createElement()(注意, 此处生成的还是React元素, 而不是DOM对象)
+      const mybodyElement = (
+          <p className = "welcome">欢迎来到中国!</p>
+      );
+      
+      //React.createElement的参数依次是:组件类型(标签类型也行), 属性组合的对象, 内容.
+      const mybodyElement1 = React.createElement(
+        'p',
+        {className:"welcome"},
+        "欢迎来到中国"
+      );
+      
+      //其生成的mybodyElement1和mybodyElement就是React元素, 具体大致格式如下:
+    
+      /*
+
+        {
+          type:'p',
+          props:
+          {
+            className: "welcome", 
+            children: "欢迎来到中国"
+          }
+        }
+      */
+      console.log(mybodyElement1);
+      
+
+      //调用该方法, 才会把生成的React元素, 渲染成真实的DOM节点
+      ReactDOM.render(
+       mybodyElement,
+       document.getElementById("myBody")
+      );
+      
+
+
+      /*
+      JSX在操作的时候, 只是操作的React元素, 而不是真实的DOM节点, 当然每一个React元素对应的都有一个DOM节点, 直接操作DOM的开销比较大, 如果仅仅是操作React元素来映射到DOM节点上, 就非常的节省开销了
+      */
+
+      
+    </script>
+  </body>
+
+</html>

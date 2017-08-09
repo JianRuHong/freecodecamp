@@ -13,6 +13,7 @@ console.log(dic1);
 
 var http = require("http");
 var server = http.createServer();
+
 function welcomeFunction(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/plain'
@@ -25,7 +26,8 @@ function welcomeFunction(req, res) {
 server.on('request', welcomeFunction);
 //移除事件
 server.removeListener("request", welcomeFunction);
-server.on("request", function(req, res){
+//重新绑定事件
+server.on("request", function (req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/plain'
   });
@@ -33,5 +35,7 @@ server.on("request", function(req, res){
   console.log("The Great World");
   res.end();
 });
+//设置监听器的最大事件绑定数
+server.setMaxListeners(10);
 server.listen(9999);
 console.log("服务器已启动");

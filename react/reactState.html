@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+</head>
+
+<body>
+  <div id="myDiv"></div>
+
+  <script type="text/babel">
+    class Clock extends React.Component {
+      constructor(props){
+        super(props);
+        var time = new Date();
+        console.log("时间: " + time.toLocaleTimeString());
+        this.state = {date:time.toLocaleTimeString()};
+      }
+      render(){
+        return <h1>这是显示时间的地方:{this.state.date}</h1>
+      }
+      refresh(){
+        var time = new Date();
+        console.log("heh");
+        console.log(this);
+        this.setState({date:time.toLocaleTimeString()});
+      }
+     
+      componentDidMount() {
+        console.log("哈哈");
+        var that = this;
+        this.timerID = setInterval(function () {
+         that.refresh();
+
+        }, 1000);
+      }
+      
+      componentWillUnMount(){
+         clearInterval(this.timerID);
+      }
+      
+    }
+    ReactDOM.render(
+      <Clock />,
+      document.getElementById("myDiv")
+    );
+
+    
+    
+  </script>
+
+</body>
+
+</html>

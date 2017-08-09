@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+
+</head>
+
+<body>
+  <div id="myDiv">
+   <h1>Welcome</h1>
+  </div>
+  <script type="text/babel">
+    /*
+    元素是构成 React 应用的最小单位。
+    元素用来描述你在屏幕上看到的内容.
+    React元素就是普通的JS对象, 不是DOM节点
+    元素一旦创建后, 其内容和属性就无法改变了
+    */
+    //声明的一个React元素, 并且初始化了
+    const element = <h1>Hello, World !</h1>
+    const element1 = <h1>Hello, China !</h1>
+    //把元素渲染到指定的DOM节点里面
+    ReactDOM.render(
+      element,
+      document.getElementById("myDiv")
+    );
+
+    //再次渲染, 按照理解的是, 在指定的DOM节点里继续插入一个element生成的DOM节点, 但是运行之后发现, 指定的DOM节点里只有最后的这一个, 之前的被覆盖掉了, 这就是React的一个同步机制吧, 为了保证指定的DOM根节点的内的DOM节点和React元素保持一致, 所以一旦调用了ReactDOM.render, 就会重新渲染指定的DOM根节点内的内容, 所以在渲染的时候, 一般指定一个空的div元素作为根节点
+
+    
+    //每次渲染都会清空指定根节点内的内容, 目的就是保证React元素和DOM节点保持一致
+    ReactDOM.render(
+      element1,
+      document.getElementById("myDiv")
+    );
+
+    
+    //如果想要过1秒就重新渲染一下页面, 目前学到的, 如果要渲染页面只能通过ReactDOM.render的方法, 因为该方法会重新渲染元素
+    
+    
+    //定义一个方法
+    function intervalRefresh() {
+      //如果把element2放在方法的外面, 每次渲染的时候element2其实是没有改变过的, 因为一旦React元素生成够就不会改变了, 只要在调用方法的时候重新调用才会生成一个新的元素, 并且只会更新改变的部分
+      const element2 = <h1>It is {new Date().toLocaleTimeString()}.</h1>
+      ReactDOM.render(
+      element2,
+      document.getElementById("myDiv")
+    );
+  }
+  setInterval(intervalRefresh, 1000);
+
+  /*
+  上面的intervalRefresh只是为了理解为什么元素生成够就不能再改变了, 官方的解释如下:
+  即便我们的代码每秒钟都创建了一个新的元素，在渲染步骤中，React 只改变了页面中数字发生变化的部分。
+
+  根据我们以往的经验，将界面视为一个个特定时刻的固定内容（就像一帧一帧的动画），而不是随时处于变化之中（而不是处于变化中的一整段动画）将会有利于我们理清开发思路，减少各种bugs.
+  */
+    
+
+  </script>
+</body>
+
+</html>

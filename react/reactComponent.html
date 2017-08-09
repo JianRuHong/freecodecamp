@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--必须引入的React的JS库-->
+    <script src="./reactjs/react.js"></script>
+    <script src="./reactjs/react-dom.js"></script>
+    <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+    <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+  </head>
+  <body>
+
+    <div id="myDiv"></div>
+    <div id="myDiv1"></div>
+   <script type="text/babel">
+     //React的组件其实就是对代码的一种封装, 其复用性更高, 封装的主要思想就是解耦, React的组件亦是如此, 会把UI界面分割为独立的, 可复用的模块
+
+     //组件从概念上看就像是函数，它可以接收任意的输入值（称之为“props”），并返回一个需要在页面上展示的React元素。
+
+     //定义一个组件
+     //1. 函数式定义
+     //需要返回一个react元素
+     function China(props){
+        const element = <h1>中国, 欢迎您(Welcome to {props.country}!)</h1>;
+        return element;
+     }
+    
+     //渲染
+     ReactDOM.render(
+        <div>
+          <China country = "China" />
+          <China country = "China" />
+        </div>,
+        document.getElementById("myDiv")
+     );
+
+     //之前学习到的React元素使用的都是HTML标签, 但是在React元素也可以是自定义的组件, 比如上面的<China country = "China" />, 当React识别到元素是自定义的组件的时候, 就会把元素的属性(如上面的country)全部放在一个对象(props)里面, 返回给组件, 其实完全可以理解为函数的调用, 定义组件时的props是形参, 再调用组件时定义的属性整合到一起是实参, 然后在组件内部就可以使用其传递过来的参数值了.
+
+     /*
+     上面代码的步骤是: 先定义了一个名为China的组件, 然后使用ReactDOM.render来渲染的时候, 遇到<China country = "China" />就回去调用定义为China的函数, 把参数也一并传过去, 最后返回一个React元素, 返回的元素被ReactDOM渲染为真实的DOM, 插入到指定的根节点里面
+     */
+    /*
+    注意: 组件名必须用大写字母开头
+    */
+
+    //组合组件
+    //组件可以在它的输出中引用其它组件，这就可以让我们用同一组件来抽象出任意层次的细节。
+    function App() {
+      const element = (
+        <div>
+            <China country = "China0" />
+            <China country = "China1" />
+            <China country = "China2" />
+        </div>
+      );
+      return element;
+      
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById("myDiv1")
+    );
+    /*
+     注意, 组件的返回值只能有一个根元素, 如果有多个元素要返回就包裹在一个父元素中
+     另外, 无论是使用函数或是类来声明一个组件，它决不能修改它自己的props。所有的React组件必须像纯函数那样使用它们的props。
+     总结一句话: props是只读的
+    */
+     
+
+
+    
+   </script>  
+  </body>
+</html>

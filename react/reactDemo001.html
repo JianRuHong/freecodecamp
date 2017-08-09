@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>ReactDemo001详细讲解</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--必须引入的React的JS库-->
+    <script src="./reactjs/react.js"></script>
+    <script src="./reactjs/react-dom.js"></script>
+    <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+    <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+
+  </head>
+  <body>
+    <!--JSX是React发明的语法, 是JS的扩展, 因此在写JSX语法时, 其标签type类型应指定为text/babel, 这样可以让babel解释器来解释JSX为JS语言, 浏览器目前能识别的脚本语言大多就是JS-->
+    <script type="text/babel">
+      /*
+      Renders a React component into the DOM in the supplied `container`.
+      ReactDOM.render是React最常用的一个方法, 是把自定义的组件或者说React元素, 生成真实的DOM节点, 并且插入到指定的节点内部
+      */
+      ReactDOM.render(<h1>Hello World</h1>,document.getElementsByTagName("body")[0]);
+    </script>
+  </body>
+</html>
