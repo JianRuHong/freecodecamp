@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title>Markdown语法预览</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+  <script>
+    
+    </script>
+</head>
+
+<body>
+  
+  <div class="container" id="myDic"></div>
+  
+  <script type="text/babel">
+    'use strict';
+    //定义用于输入的区域
+    class MyInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.inputChangeAction = this.inputChangeAction.bind(this);
+      }
+      render() {
+        const element = (
+          <div className="col-xs-6">
+            <textarea onInput={this.inputChangeAction} ref="mahao"></textarea>
+          </div>
+        );
+        return element;
+      }
+
+      inputChangeAction() {
+          console.log(this.refs.mahao);
+      }
+    }
+   
+    //定义用于展示的区域
+    class MyDispaly extends React.Component {
+      render() {
+        const element = (
+          <div className="col-xs-6">
+          </div>
+        );
+        return element;
+      }
+    }
+    
+    //最终效果
+    class App extends React.Component {
+      render () {
+         return (
+           <div className="row">
+             <MyInput />
+             <MyDispaly />
+            </div>
+         );
+      }
+    }
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById("myDic")
+    );
+  </script>
+</body>
+
+</html>

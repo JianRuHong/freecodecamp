@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title>React进行Ajax网络请求</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+  <script>
+    $(document).ready(function () {
+      console.log("文档加载完毕");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="weather"></div>
+  <script type="text/babel">
+    class MyWeather extends React.Component {
+
+      constructor(props) {
+        super(props);
+        this.state = {title:"天气标题", content:"天气内容"};
+      }
+      render () {
+        const element = (
+          <div>
+            <h1>天气的标题: {this.state.title}</h1>
+            <p>天气的内容: {this.state.content}</p>
+            </div>
+        );
+
+        return element;
+      }
+
+      componentDidMount () {
+        console.log("已经渲染完毕");
+        console.log(this);
+        /*
+        //还是this指向的问题, 一般情况下闭包, 或者函数作为回调函数时, 都会改变this的指向
+        var that = this;
+        $.get(this.props.weatherUrl, function(result, status){
+            console.log(result);
+            console.log(this);
+            that.setState({title:result["weather"][0]["city_name"]});
+        });
+        */
+        //尽量使用箭头函数, 这样this的指向一直是词法作用域, 而不是动态改变的
+        $.get(this.props.weatherUrl, (result, status)=>{
+            console.log(result);
+            console.log(this);
+            this.setState({title:result["weather"][0]["city_name"], content:result["weather"][0]["now"]["text"]});
+        });
+      }
+    }
+
+    ReactDOM.render (
+      <MyWeather weatherUrl = "http://weixin.jirengu.com/weather"/>,
+      document.getElementById("weather")
+    ); 
+    
+  </script>
+</body>
+
+</html>

@@ -17,6 +17,6 @@
 6. [DOM教程](http://www.runoob.com/htmldom/htmldom-intro.html), DOM是独立于语言和平台的,它允许程序和脚本动态地访问和更新文档的内容、结构和样式。这个上面讲解的还是很简洁明了!
 7. [SASS安装步骤](https://www.sass.hk/install/), 我使用Mac安装时也碰到了不少坑, 不过已记录在了test.scss中
 8. [SASS入门学习](http://www.ruanyifeng.com/blog/2012/06/sass.html)这个文章写的还是很浅显易懂的, 使用SASS来做CSS的日常处理, 足够了, 不过对于我来说, 目前阶段我更喜欢使用CSS来处理样式, 可以加强记忆.
-9. [阮一峰React入门知识](http://www.ruanyifeng.com/blog/2015/03/react), [React官方教程笔记（React 15.4.X](http://www.jianshu.com/p/c6602d601d9a), React入门以及较深入的知识和原理, 看这个两个文章, 完全足够.
+9. [阮一峰React入门知识](http://www.ruanyifeng.com/blog/2015/03/react), [React官方文档翻译](https://discountry.github.io/react/), React入门以及较深入的知识和原理, 看这个两个文章, 完全足够.
 
 

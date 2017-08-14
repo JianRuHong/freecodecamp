@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--必须引入的React的JS库-->
+    <script src="./reactjs/react.js"></script>
+    <script src="./reactjs/react-dom.js"></script>
+    <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+    <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+
+  </head>
+  <body>
+    <div id="myDiv"></div>
+    <script type="text/babel">
+      class MyButton extends React.Component {
+        constructor(props) {
+         super(props);
+         //此处不绑定this的话, 在mychange里面的this是null
+         this.mychange = this.mychange.bind(this);
+        }
+        mychange() {
+          console.log(this);
+        }
+        render() {
+          //console.log(this);
+          //this.myChange, 是没有调用的, 只有加上()才是调用, 调用的时候才会正常的传送this对象, 此处没调用, 是没有传递的, 所以在定义的组件内要正确的指向this, 一是可以使用箭头函数来定义, 箭头函数中, 只会从上下文来确定this指向; 二是通过bind函数来绑定一个正确的this, 该方法会返回一个函数, 不会立即调用, 如果使用call, apply是直接调用了
+          const element = <button onClick={this.mychange}>点我</button>
+          return element;
+        }
+      }
+
+      ReactDOM.render(
+         <MyButton />,
+          document.getElementById("myDiv")
+      );
+      
+      //React事件绑定属性的命名采用驼峰式写法，而不是小写。
+      //如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM元素的写法)
+      //传入的函数是没有直接调用的, 其this指向也是无效的, 所以要给方法重新绑定this
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <!--必须引入的React的JS库-->
+  <script src="./reactjs/react.js"></script>
+  <script src="./reactjs/react-dom.js"></script>
+  <!--该库用来解释JSX以及把ES6的语法转换成ES5(为了兼容, 因为有的浏览器还并不支持ES6的语法)-->
+  <script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+</head>
+
+<body>
+
+  <div id="login"></div>
+  <script type="text/babel">
+
+      
+
+     class UserGreeting extends React.Component {
+       render () {
+         const element = (<h1>请先登陆!</h1>);
+         return element;
+       }
+     }
+
+     class UserLogin extends React.Component {
+       render () {
+         const element = (<h1>欢迎回来!</h1>);
+         return element;
+       }
+     }
+     class App extends React.Component {
+       render () {
+         //React支持条件语句, 可以根据判断来进行选择性的渲染
+         if (this.props.isLogin) {
+           return <UserLogin />;
+         } else {
+            return <UserGreeting />;
+         }
+      
+       }
+     }
+     ReactDOM.render(
+       <App isLogin = {true}/>,
+       document.getElementById("login")
+     );
+    
+  </script>
+</body>
+
+</html>

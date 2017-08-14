@@ -16,13 +16,20 @@
   <div id="myDiv"></div>
 
   <script type="text/babel">
+
+    //之前学习过通过函数定义一个组件, 这里是另种方式, 类定义, 比函数定义组件强的地方就是可以扩展一些属性和方法(常用的是状态和生命周期)
     class Clock extends React.Component {
+
+      //构造器, 初始化对象的时候调用
+      //类组件应始终使用props调用基础构造函数。
       constructor(props){
         super(props);
+        //在构造对象的时候初始化状态
         var time = new Date();
         console.log("时间: " + time.toLocaleTimeString());
         this.state = {date:time.toLocaleTimeString()};
       }
+      //该方法是必须实现的, 用于输入react元素
       render(){
         return <h1>这是显示时间的地方:{this.state.date}</h1>
       }
@@ -30,18 +37,26 @@
         var time = new Date();
         console.log("heh");
         console.log(this);
+        //设置状态值, 当状态修改以后, 会自动调用render()方法来刷新UI
         this.setState({date:time.toLocaleTimeString()});
       }
      
+      
+      //当组件已经插入真实的DOM时会调用该方法
       componentDidMount() {
         console.log("哈哈");
+        //在这里的this还是定义的类的对象
         var that = this;
         this.timerID = setInterval(function () {
+          //但是在另一个函数内部, 其this的指向已经改变了, 变成了window
          that.refresh();
-
         }, 1000);
+        
+        //如果使用箭头函数, 其词法作用域始终指向的就是其上下文的对象, 指向是固定的, 准确的
+        //this.timerID = setInterval(()=>{this.refresh()}, 1000);
       }
       
+      //当组件将要从DOM中移除时会调用该方法
       componentWillUnMount(){
          clearInterval(this.timerID);
       }
@@ -52,6 +67,14 @@
       document.getElementById("myDiv")
     );
 
+
+    /*
+     这一节比较重要, 还是总结一下为好:
+     1. 组件都有一个私有的状态属性:state, 该属性只有其所在组件可以使用, 如果state的属性发生改变, 就会调用组件的render()方法来刷新;
+     2. 修改其state属性, 应该使用setState({})这种方式, 状态更新是合并的(会把设置的{}内的属性合并到初始化的state里面去, 如果有就是修改, 没有就是新增), 直接使用this.state来重新指向是错误的, 构造函数是唯一能够初始化 this.state 的地方;
+     3. 尽量使用构造函数, 可以不用操心词法作用域的问题;
+     4. 创建一个组件, 使用类定义可以扩展出一些额外的属性和方法, 格式为 class extends React.Component{}, 其中主要的属性包括props(自定义的属性的一个对象集合), state; 包括的主要方法就是组件的声明周期, 常用到的就是组件已经记载完毕且DOM已更新的方法:componentDidMount, 组件将要移除: componentWillUnMount, 这些方法都不是手动调用的, 会在事件触发时, 自动调用.
+    */
     
     
   </script>
