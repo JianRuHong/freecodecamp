@@ -27,6 +27,7 @@ process.on('exit', function () {
 
 
 
+
 //有些JS代码在浏览器和NodeJS里面都可以运行, 可以通过判断是否拥有某个全局变量来区分
 //typeof用来检查某个对象的类型, 如果未定义就会返回undefined, 不管任何类型, 返回的都是字符串, 切记, 返回的类型是字符串(http://blog.csdn.net/z18842589113/article/details/53315910)
 console.log(typeof(window));

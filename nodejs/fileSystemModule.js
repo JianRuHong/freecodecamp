@@ -60,4 +60,6 @@ fileSystem.stat("./travel.png", function(error, stats) {
   
  }
 });
+
+
 console.log(process.cwd());

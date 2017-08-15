@@ -88,3 +88,4 @@ console.log(finalString);
  var subStudentString = subStudentArray.join(" ,");
  var studentString1 = `欢迎${subStudentString}和${studentArr[studentArr.length - 1]}`;
  console.log(studentString1);
+
