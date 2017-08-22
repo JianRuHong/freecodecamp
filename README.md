@@ -18,5 +18,9 @@
 7. [SASS安装步骤](https://www.sass.hk/install/), 我使用Mac安装时也碰到了不少坑, 不过已记录在了test.scss中
 8. [SASS入门学习](http://www.ruanyifeng.com/blog/2012/06/sass.html)这个文章写的还是很浅显易懂的, 使用SASS来做CSS的日常处理, 足够了, 不过对于我来说, 目前阶段我更喜欢使用CSS来处理样式, 可以加强记忆.
 9. [阮一峰React入门知识](http://www.ruanyifeng.com/blog/2015/03/react), [React官方文档翻译](https://discountry.github.io/react/), React入门以及较深入的知识和原理, 看这个两个文章, 完全足够.
-
+10. [Node.js概述](http://javascript.ruanyifeng.com/nodejs/basic.html), 学习完Node.js的入门知识回头看
+11. [Node.js教程](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434501245426ad4b91f2b880464ba876a8e3043fc8ef000), 看的这篇入门, 还不错
+12. [菜鸟教程Node.js教程](http://www.runoob.com/nodejs/nodejs-tutorial.html), 可以参考, 也还不错
+13. [Homebrew](https://brew.sh/index_zh-cn.html),Mac端的包管理工具,可以用来安装Nodejs以及卸载, 很是方便, 如果去nodejs官网下载安装, 也行, 但是如果卸载的话就会很麻烦, 如果使用Homebrew, 使用brew uninstall 包应用, 就可以删除干净.
+14. [NPM使用教程](http://www.jianshu.com/p/4643a8e43b79), 这哥们的浅显易懂, 不错(NPM就是nodejs的包管理工具, 类似于cocoapods)
 
