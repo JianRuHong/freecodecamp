@@ -17,6 +17,8 @@ app.listen(3000, function () {
 });
 
 
+
+
 //Promise的使用方法, 异步编程的一个主要手段
 function test(resolve, reject) {
   console.log("执行了");
@@ -60,3 +62,5 @@ var p = new Promise(function (resolve, reject) {
 });
 
 p.then(f1).then(f2).then(f3);
+
+
